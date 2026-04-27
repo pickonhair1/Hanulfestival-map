@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 한울제 부스 안내</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    .guide {
+      margin: 0 0 18px;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .button-area {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .booth-btn {
+      border: none;
+      background: #222;
+      color: #fff;
+      border-radius: 999px;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      transition: 0.2s ease;
+      min-height: 52px;
+    }
+
+    .booth-btn:hover,
+    .booth-btn.active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      background: #f0b400;
+      color: #111;
+    }
+
+    .info-card {
+      margin-top: 8px;
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-card h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 10px 12px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .label {
+      font-weight: 700;
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 22px; }
+      .guide { font-size: 13px; }
+      .button-area {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .booth-btn {
+        font-size: 13px;
+        padding: 12px 10px;
+      }
+      .info-grid {
+        grid-template-columns: 72px 1fr;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>2026 한울제 부스 안내</h1>
+
+    <div class="button-area" id="buttonArea"></div>
+
+    <div class="info-card">
+      <h2 id="boothName">정보를 알고 싶은 부스를 눌러주세요</h2>
+      <div class="info-grid">
+        <div class="label">위치</div>
+        <div id="boothNumber">-</div>
+
+        <div class="label">학과명</div>
+        <div id="boothDept">-</div>
+
+        <div class="label">부스종류</div>
+        <div id="boothType">-</div>
+
+        <div class="label">메뉴</div>
+        <div id="boothMenu">-</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const boothData = [
+  { number: '1', name: '건축인테리어학과', dept: '건축인테리어학과', type: '주점', menu: '라면종류, 만두' },
+  { number: '2', name: '게임콘텐츠학과', dept: '게임콘텐츠학과', type: '주점', menu: '숙주볶음, 꼬치, 설탕토마토, 계란말이, 감자버터구이' },
+  { number: '3', name: '경영학과', dept: '경영학과', type: '주점', menu: '우동, 냉면, 골뱅이소면, 찐만두, 에이드(논알콜하이볼), 라면' },
+  { number: '4', name: '기계공학과', dept: '기계공학과', type: '주점', menu: '닭발, 주먹밥, 계란찜, 꿀 토마토, 파인애플 샤베트' },
+  { number: '5', name: '메카트로닉스공학과', dept: '메카트로닉스공학과', type: '주점', menu: '길감자, 감자전, 닭껍질튀김, 오뎅탕, 오징어무침, 매운오징어볶음' },
+  { number: '6', name: '모빌리티공학과', dept: '모빌리티공학과', type: '소개팅부스 + 주점', menu: '감자전, 김치전, 파전, 옥수수전, 목사발, 후르츠칵테일화채, 골뱅이야채무침, 오징어야채무침, 콘치즈' },
+  { number: '7', name: '미래전기자동차과', dept: '미래전기자동차과', type: '주점', menu: '떡볶이, 순대, 오뎅탕, 주먹밥, 닭꼬치' },
+  { number: '8', name: '보건의료정보학과', dept: '보건의료정보학과', type: '주점', menu: '무뼈직화닭발, 콘치즈, 황도, 주먹밥, 우동국' },
+  { number: '9', name: '사회복지학과', dept: '사회복지학과', type: '주점', menu: '훈제오리 부추무침, 고기두부김치, 계란말이, 콘치즈전' },
+  { number: '10', name: '생명화학공학과', dept: '생명화학공학과', type: '주점', menu: '꿔바로우, 우삼겹 숙주 볶음, 화산마라전골, 스키야키전골, 단무지' },
+  { number: '11', name: '건축소방학과', dept: '건축소방학과', type: '주점', menu: '잔치국수, 쏘야, 소떡소떡, 떡꼬치, 나초 콘마요, 한입미니전' },
+  { number: '12', name: '시각정보디자인학과', dept: '시각정보디자인학과', type: '주점', menu: '계란탕, 제육볶음, 치즈불닭볶음면, 황도, 화채' },
+  { number: '13', name: '영상디자인과', dept: '영상디자인과', type: '주점', menu: '볶음우동, 쏘야, 치즈계란말이, 버터갈릭감자튀김, 황도' },
+  { number: '14', name: '웹툰일러스트학과', dept: '웹툰일러스트학과', type: '주점', menu: '부대찌개, 컵밥, 닭가라아게, 미니돈까스, 치즈볼, 콜라, 제로콜라, 웰치스 포도, 사이다' },
+  { number: '15', name: '인공지능학과', dept: '인공지능학과', type: '소개팅부스 + 주점', menu: '오뎅탕, 로제 파스타, 두부 김치, 꿀 토마토, 까나페' },
+  { number: '16', name: '전기공학과', dept: '전기공학과', type: '주점', menu: '삼겹살' },
+  { number: '17', name: '전자공학과', dept: '전자공학과', type: '주점', menu: '유린기, 감자튀김, 소세지구이, 버터갈릭감자튀김, 해물라면' },
+  { number: '18', name: '컴퓨터모바일융합과', dept: '컴퓨터모바일융합과', type: '주점', menu: '치킨, 칠리스, 감자튀김, 치즈볼' },
+  { number: '19', name: '국방군사학과', dept: '국방군사학과', type: '이벤트', menu: '사격' },
+  { number: '20', name: '디자인공학과', dept: '디자인공학과', type: '이벤트', menu: '다트 풍선 터트리기, 폴라로이드 포토존, 페이스페인팅' },
+  { number: '21', name: '패션디자인과', dept: '패션디자인과', type: '이벤트', menu: '옷가게' }
+];
+
+    const buttonArea = document.getElementById('buttonArea');
+    const boothName = document.getElementById('boothName');
+    const boothNumber = document.getElementById('boothNumber');
+    const boothDept = document.getElementById('boothDept');
+    const boothType = document.getElementById('boothType');
+    const boothMenu = document.getElementById('boothMenu');
+
+    boothData.forEach((booth, index) => {
+      const button = document.createElement('button');
+      button.className = 'booth-btn';
+      button.textContent = `${booth.number}. ${booth.dept}`;
+
+      button.addEventListener('click', () => {
+        boothName.textContent = booth.name;
+        boothNumber.textContent = booth.number;
+        boothDept.textContent = booth.dept;
+        boothType.textContent = booth.type;
+        boothMenu.textContent = booth.menu;
+
+        document.querySelectorAll('.booth-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+      });
+
+      buttonArea.appendChild(button);
+    });
+  </script>
+</body>
+</html>
