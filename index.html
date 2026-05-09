@@ -12,8 +12,6 @@
       --text: #1f2937;
       --sub: #6b7280;
       --line: #e5e7eb;
-      --point: #2563eb;
-      --point-soft: #dbeafe;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 22px;
     }
@@ -29,39 +27,6 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 20px 16px 40px;
-    }
-
-    .hero {
-      background: var(--card);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 24px 20px;
-      margin-bottom: 18px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 12px;
-      background: var(--point-soft);
-      color: var(--point);
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      line-height: 1.3;
-    }
-
-    .guide {
-      margin: 0;
-      color: var(--sub);
-      font-size: 14px;
-      line-height: 1.7;
     }
 
     .map-card {
@@ -101,71 +66,86 @@
     }
 
     .hitbox {
-  position: absolute;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-}
+      position: absolute;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
 
     .hitbox:focus-visible {
-      outline: 3px solid rgba(255, 0, 0, 0);
+      outline: 2px solid rgba(37, 99, 235, 0.35);
       border-radius: 8px;
     }
 
     .hitbox.active {
-      background: rgba(255, 0, 0, 0);
+      background: rgba(37, 99, 235, 0.14);
       border-radius: 8px;
-      box-shadow: inset 0 0 0 1.5px rgba(255, 0, 0, 0);
+      box-shadow: inset 0 0 0 2px rgba(37, 99, 235, 0.4);
     }
 
-    .info-card {
-      background: var(--card);
+    .popup-card {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      max-width: 760px;
+      max-height: 78%;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(6px);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px 20px;
+      border-radius: 20px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.22);
+      padding: 24px 20px 20px;
+      z-index: 20;
+      display: none;
     }
 
-    .info-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+    .popup-card.show {
+      display: block;
     }
 
-    .info-label {
+    .popup-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: #f3f4f6;
+      color: #374151;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .popup-label {
       display: inline-block;
-      padding: 7px 11px;
+      padding: 7px 12px;
       border-radius: 999px;
       background: #f3f4f6;
       color: #374151;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .info-card h2 {
-      margin: 0;
-      font-size: 26px;
+    .popup-card h2 {
+      margin: 0 44px 16px 0;
+      font-size: 28px;
       line-height: 1.35;
       word-break: keep-all;
     }
 
-    .info-tip {
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .info-grid {
+    .popup-grid {
       display: grid;
-      grid-template-columns: 90px 1fr;
+      grid-template-columns: 82px 1fr;
       gap: 12px 14px;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.7;
     }
 
@@ -183,31 +163,16 @@
       color: var(--sub);
     }
 
-    .quick-list {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
-    }
-
-    .quick-btn {
+    .guide-box {
+      margin-top: 16px;
+      background: var(--card);
       border: 1px solid var(--line);
-      background: #fff;
-      color: #111827;
       border-radius: 16px;
-      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+      color: var(--sub);
       font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      text-align: left;
-      transition: 0.2s ease;
-    }
-
-    .quick-btn:hover,
-    .quick-btn.active {
-      border-color: rgba(37, 99, 235, 0.35);
-      background: #eff6ff;
-      color: #1d4ed8;
+      line-height: 1.7;
     }
 
     @media (max-width: 700px) {
@@ -215,46 +180,39 @@
         padding: 16px 12px 32px;
       }
 
-      .hero,
-      .map-card,
-      .info-card {
+      .map-card {
         padding: 16px;
         border-radius: 20px;
       }
 
-      h1 {
-        font-size: 23px;
+      .popup-card {
+        width: calc(100% - 16px);
+        max-width: none;
+        max-height: 76%;
+        padding: 20px 16px 16px;
       }
 
-      .info-card h2 {
+      .popup-card h2 {
         font-size: 22px;
       }
 
-      .info-grid {
-        grid-template-columns: 74px 1fr;
+      .popup-grid {
+        grid-template-columns: 70px 1fr;
         font-size: 14px;
         gap: 10px 12px;
       }
 
-      .quick-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .guide-box {
+        font-size: 13px;
       }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <div class="badge">2026 한울제</div>
-      <h1>축제 부스 안내</h1>
-      <p class="guide">
-        배치도에서 원하는 부스 이름 영역을 누르면 아래에서 상세 정보를 확인할 수 있습니다. (59대 총학생회 제작)
-      </p>
-    </section>
-
     <section class="map-card">
       <h3 class="map-title">축제 배치도</h3>
-      <p class="map-sub">지도에서 정보를 알고싶으신 부스의 이름 부분을 눌러주세요.</p>
+      <p class="map-sub">지도에서 정보를 알고싶으신 부스를 눌러주세요.</p>
 
       <div class="map-box">
         <img src="festival-map.jpg" alt="2026 한울제 배치도" />
@@ -297,33 +255,31 @@
         <button class="hitbox" data-number="Z1" aria-label="푸드존" style="left: 90.2%; top: 18.5%; width: 9%; height: 22%;"></button>
         <button class="hitbox" data-number="S1" aria-label="총학" style="left: 41.4%; top: 14.4%; width: 8.3%; height: 3.3%;"></button>
         <button class="hitbox" data-number="G1" aria-label="오락" style="left: 50.7%; top: 14.4%; width: 8%; height: 3.3%;"></button>
-      </div>
-    </section>
 
-    <section class="info-card" id="infoSection">
-      <div class="info-head">
-        <div>
-          <div class="info-label">부스 상세 정보</div>
+        <div class="popup-card" id="popupCard">
+          <button class="popup-close" id="popupClose" aria-label="닫기">×</button>
+          <div class="popup-label">부스 상세 정보</div>
           <h2 id="boothName">정보를 확인할 부스를 눌러주세요</h2>
+
+          <div class="popup-grid">
+            <div class="label">구분</div>
+            <div class="value empty" id="boothNumber">-</div>
+
+            <div class="label">학과명</div>
+            <div class="value empty" id="boothDept">-</div>
+
+            <div class="label">부스종류</div>
+            <div class="value empty" id="boothType">-</div>
+
+            <div class="label">내용</div>
+            <div class="value empty" id="boothMenu">-</div>
+          </div>
         </div>
-        <div class="info-tip">배치도 또는 아래 버튼을 눌러 정보를 확인해보세요.</div>
       </div>
 
-      <div class="info-grid">
-        <div class="label">구분</div>
-        <div class="value empty" id="boothNumber">-</div>
-
-        <div class="label">학과명</div>
-        <div class="value empty" id="boothDept">-</div>
-
-        <div class="label">부스종류</div>
-        <div class="value empty" id="boothType">-</div>
-
-        <div class="label">내용</div>
-        <div class="value empty" id="boothMenu">-</div>
+      <div class="guide-box">
+        배치도에서 원하는 부스 이름 영역을 누르면 지도 위에서 상세 정보를 확인할 수 있습니다. (59대 총학생회 제작)
       </div>
-
-      <div class="quick-list" id="quickList"></div>
     </section>
   </div>
 
@@ -366,17 +322,13 @@
     const boothDept = document.getElementById('boothDept');
     const boothType = document.getElementById('boothType');
     const boothMenu = document.getElementById('boothMenu');
-    const quickList = document.getElementById('quickList');
-    const infoSection = document.getElementById('infoSection');
+    const popupCard = document.getElementById('popupCard');
+    const popupClose = document.getElementById('popupClose');
     const hitboxes = document.querySelectorAll('.hitbox');
 
     function setActive(number) {
       hitboxes.forEach(box => {
         box.classList.toggle('active', box.dataset.number === number);
-      });
-
-      document.querySelectorAll('.quick-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.number === number);
       });
     }
 
@@ -390,22 +342,21 @@
       boothType.textContent = booth.type;
       boothMenu.textContent = booth.menu;
 
-      [boothNumber, boothDept, boothType, boothMenu].forEach(el => el.classList.remove('empty'));
+      [boothNumber, boothDept, boothType, boothMenu].forEach(el => {
+        el.classList.remove('empty');
+      });
+
       setActive(number);
-      infoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      popupCard.classList.add('show');
     }
 
     hitboxes.forEach(box => {
       box.addEventListener('click', () => fillInfo(box.dataset.number));
     });
 
-    boothData.forEach(booth => {
-      const btn = document.createElement('button');
-      btn.className = 'quick-btn';
-      btn.dataset.number = booth.number;
-      btn.textContent = booth.name;
-      btn.addEventListener('click', () => fillInfo(booth.number));
-      quickList.appendChild(btn);
+    popupClose.addEventListener('click', () => {
+      popupCard.classList.remove('show');
+      hitboxes.forEach(box => box.classList.remove('active'));
     });
   </script>
 </body>
