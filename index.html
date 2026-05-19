@@ -163,6 +163,23 @@
       color: var(--sub);
     }
 
+    .menu-image {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .menu-image-error {
+      color: #b3261e;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
     .menu-link-button {
       display: inline-flex;
       align-items: center;
@@ -226,6 +243,10 @@
 
       .guide-box {
         font-size: 13px;
+      }
+
+      .menu-image {
+        max-width: 100%;
       }
     }
   </style>
@@ -307,43 +328,224 @@
 
   <script>
     const boothData = [
-      { number: '1',  name: '건축인테리어학과', dept: '건축인테리어학과', type: '주점', menu: '찌파구리, 해장라면' },
-      { number: '2',  name: '게임콘텐츠학과', dept: '게임콘텐츠학과', type: '주점', menu: '숙주볶음, 꼬치류, 감자버터구이, 대왕계란말이, 설탕 토마토' },
-      { number: '3',  name: '경영학과', dept: '경영학과', type: '주점', menu: '우동, 냉면, 골뱅이소면, 찐만두, 에이드, 김치말이국수' },
-      { number: '4',  name: '기계공학과', dept: '기계공학과', type: '주점', menu: '우동, 닭발, 주먹밥, 계란찜, 꿀토마토, 파인애플 샤베트' },
-      { number: '5',  name: '메카트로닉스공학과', dept: '메카트로닉스공학과', type: '주점', menu: '길감자, 감자전, 닭껍질튀김, 오뎅탕, 오징어무침, 매운오징어볶음, 닭목살구이' },
-      { number: '6',  name: '모빌리티공학과', dept: '모빌리티공학과', type: '소개팅부스 + 주점', menu: '감자전, 김치전, 파전, 옥수수전, 목사발, 후르츠칵테일화채, 골뱅이야채무침, 오징어야채무침, 콘치즈' },
-      { number: '7',  name: '미래전기자동차과', dept: '미래전기자동차과', type: '주점', menu: '감바스, 뇨끼' },
-      { number: '8',  name: '보건의료정보학과', dept: '보건의료정보학과', type: '주점', menu: '무뼈닭발, 콘치즈, 주먹밥, 황도, 우동국' },
-      { number: '9',  name: '사회복지학과', dept: '사회복지학과', type: '주점', menu: '훈제오리 부추무침, 고기두부김치, 계란말이, 콘치즈전' },
-      { number: '10', name: '생명화학공학과', dept: '생명화학공학과', type: '주점', menu: '우삼겹 숙주볶음, 화산마라전골, 꿔바로우, 염통꼬치, 컵마라탕, 꼬치(새우, 유부, 메추리알)' },
-      { number: '11', name: '건축소방학과', dept: '건축소방학과', type: '주점', menu: '팥빙수, 크로플, 오레오빙수' },
-      { number: '12', name: '시각정보디자인학과', dept: '시각정보디자인학과', type: '주점', menu: '계란탕, 제육볶음, 치즈불닭볶음면, 황도, 화채' },
-      { number: '13', name: '영상디자인과', dept: '영상디자인과', type: '주점', menu: '볶음우동, 쏘야, 치즈계란말이, 버터갈릭감자튀김, 황도' },
-      { number: '14', name: '웹툰일러스트학과', dept: '웹툰일러스트학과', type: '주점', menu: '부대찌개' },
-      { number: '15', name: '인공지능학과', dept: '인공지능학과', type: '소개팅부스 + 주점', menu: '오뎅탕, 로제 파스타, 두부 김치, 꿀 토마토, 까나페' },
-      { number: '16', name: '전기공학과', dept: '전기공학과', type: '주점', menu: '삼겹살' },
-      { number: '17', name: '전자공학과', dept: '전자공학과', type: '주점', menu: '감자튀김, 소시지, 유린기' },
       { 
-        number: '18', 
-        name: '컴퓨터모바일융합과', 
-        dept: '컴퓨터모바일융합과', 
-        type: '주점', 
+        number: '1',
+        name: '건축인테리어학과',
+        dept: '건축인테리어학과',
+        type: '주점',
+        menu: '찌파구리, 해장라면',
+        image: '건인.jpg'
+      },
+      { 
+        number: '2',
+        name: '게임콘텐츠학과',
+        dept: '게임콘텐츠학과',
+        type: '주점',
+        menu: '숙주볶음, 꼬치류, 감자버터구이, 대왕계란말이, 설탕 토마토',
+        image: '겜콘.png'
+      },
+      { 
+        number: '3',
+        name: '경영학과',
+        dept: '경영학과',
+        type: '주점',
+        menu: '우동, 냉면, 골뱅이소면, 찐만두, 에이드, 김치말이국수',
+        image: '경영.jpg'
+      },
+      { 
+        number: '4',
+        name: '기계공학과',
+        dept: '기계공학과',
+        type: '주점',
+        menu: '우동, 닭발, 주먹밥, 계란찜, 꿀토마토, 파인애플 샤베트',
+        image: '기공.jpg'
+      },
+      { 
+        number: '5',
+        name: '메카트로닉스공학과',
+        dept: '메카트로닉스공학과',
+        type: '주점',
+        menu: '길감자, 감자전, 닭껍질튀김, 오뎅탕, 오징어무침, 매운오징어볶음, 닭목살구이',
+        image: '메카.png'
+      },
+      { 
+        number: '6',
+        name: '모빌리티공학과',
+        dept: '모빌리티공학과',
+        type: '소개팅부스 + 주점',
+        menu: '감자전, 김치전, 파전, 옥수수전, 목사발, 후르츠칵테일화채, 골뱅이야채무침, 오징어야채무침, 콘치즈',
+        image: '모빌.png'
+      },
+      { 
+        number: '7',
+        name: '미래전기자동차과',
+        dept: '미래전기자동차과',
+        type: '주점',
+        menu: '감바스, 뇨끼'
+      },
+      { 
+        number: '8',
+        name: '보건의료정보학과',
+        dept: '보건의료정보학과',
+        type: '주점',
+        menu: '무뼈닭발, 콘치즈, 주먹밥, 황도, 우동국',
+        image: '보건.png'
+      },
+      { 
+        number: '9',
+        name: '사회복지학과',
+        dept: '사회복지학과',
+        type: '주점',
+        menu: '훈제오리 부추무침, 고기두부김치, 계란말이, 콘치즈전'
+      },
+      { 
+        number: '10',
+        name: '생명화학공학과',
+        dept: '생명화학공학과',
+        type: '주점',
+        menu: '우삼겹 숙주볶음, 화산마라전골, 꿔바로우, 염통꼬치, 컵마라탕, 꼬치(새우, 유부, 메추리알)',
+        image: '생화공.png'
+      },
+      { 
+        number: '11',
+        name: '건축소방학과',
+        dept: '건축소방학과',
+        type: '주점',
+        menu: '팥빙수, 크로플, 오레오빙수'
+      },
+      { 
+        number: '12',
+        name: '시각정보디자인학과',
+        dept: '시각정보디자인학과',
+        type: '주점',
+        menu: '계란탕, 제육볶음, 치즈불닭볶음면, 황도, 화채',
+        image: '시디.jpg'
+      },
+      { 
+        number: '13',
+        name: '영상디자인과',
+        dept: '영상디자인과',
+        type: '주점',
+        menu: '볶음우동, 쏘야, 치즈계란말이, 버터갈릭감자튀김, 황도'
+      },
+      { 
+        number: '14',
+        name: '웹툰일러스트학과',
+        dept: '웹툰일러스트학과',
+        type: '주점',
+        menu: '부대찌개'
+      },
+      { 
+        number: '15',
+        name: '인공지능학과',
+        dept: '인공지능학과',
+        type: '소개팅부스 + 주점',
+        menu: '오뎅탕, 로제 파스타, 두부 김치, 꿀 토마토, 까나페',
+        image: '인공.PNG'
+      },
+      { 
+        number: '16',
+        name: '전기공학과',
+        dept: '전기공학과',
+        type: '주점',
+        menu: '삼겹살',
+        image: '전기.png'
+      },
+      { 
+        number: '17',
+        name: '전자공학과',
+        dept: '전자공학과',
+        type: '주점',
+        menu: '감자튀김, 소시지, 유린기'
+      },
+      { 
+        number: '18',
+        name: '컴퓨터모바일융합과',
+        dept: '컴퓨터모바일융합과',
+        type: '주점',
         menu: '인스타그램 메뉴 보기',
         link: 'https://www.instagram.com/p/DYerhQ4FOVL/?igsh=MTR4OHY4bjN1cHQ5OA=='
       },
-      { number: '19', name: '국방군사학과', dept: '국방군사학과', type: '이벤트', menu: '사격' },
-      { number: '20', name: '디자인공학과', dept: '디자인공학과', type: '이벤트', menu: '다트 풍선 터트리기, 폴라로이드 포토존, 페이스페인팅' },
-      { number: '21', name: '패션디자인과', dept: '패션디자인과', type: '이벤트', menu: '옷가게' },
+      { 
+        number: '19',
+        name: '국방군사학과',
+        dept: '국방군사학과',
+        type: '이벤트',
+        menu: '사격',
+        image: '군사.jpg'
+      },
+      { 
+        number: '20',
+        name: '디자인공학과',
+        dept: '디자인공학과',
+        type: '이벤트',
+        menu: '다트 풍선 터트리기, 폴라로이드 포토존, 페이스페인팅'
+      },
+      { 
+        number: '21',
+        name: '패션디자인과',
+        dept: '패션디자인과',
+        type: '이벤트',
+        menu: '옷가게',
+        image: '패디.png'
+      },
 
-      { number: 'P1', name: '플리마켓', dept: '플리마켓', type: '체험 부스', menu: '타로카드, 양말목키링, 모루응원봉, 애완돌 만들기, 나비/얼굴 방명록' },
-      { number: 'C1', name: '동아리', dept: '동아리 부스', type: '홍보 / 체험', menu: '종합게임, 잔상, DAP, 볼텍스, 축구' },
-      { number: 'A1', name: 'AMB', dept: 'AMB', type: '안전 안내', menu: 'AMB (구급차)' },
-      { number: 'M1', name: '의무실', dept: '의무실', type: '의료 지원', menu: '의무실 공간' },
-      { number: 'F1', name: '학생회비존', dept: '학생회비존', type: '전용 관람 구역', menu: '학생회비를 낸 학생들을 위한 무대를 가까이서 볼 수 있는 공간' },
-      { number: 'Z1', name: '푸드존', dept: '푸드존', type: '푸드트럭 구역', menu: '푸드트럭 6대 디저트류 4대, 식사류 2대 / 밥류: 야끼소바, 곱창(막창)볶음, 큐브스테이크, 소고기초밥, 마라탕, 볶음밥 / 디저트류: 마카롱, 와플, 츄러스, 핫도그, 칠리새우, 크림새우, 크로플, 컵빙수, 철판 아이스크림, 토스트, 붕어빵 아이스크림, 파르페, 새우튀김, 닭똥집, 컵인절미팥빙수, 홍콩와플' },
-      { number: 'S1', name: '총학', dept: '총학생회', type: '운영 부스', menu: '타투(헤나), 슬러시' },
-      { number: 'G1', name: '오락', dept: '오락 부스', type: '체험 부스', menu: '지티 키링 뽑기, 펀치 기계, 축구공 펀치 기계, 두더지 잡기' }
+      { 
+        number: 'P1',
+        name: '플리마켓',
+        dept: '플리마켓',
+        type: '체험 부스',
+        menu: '타로카드, 양말목키링, 모루응원봉, 애완돌 만들기, 나비/얼굴 방명록'
+      },
+      { 
+        number: 'C1',
+        name: '동아리',
+        dept: '동아리 부스',
+        type: '홍보 / 체험',
+        menu: '종합게임, 잔상, DAP, 볼텍스, 축구'
+      },
+      { 
+        number: 'A1',
+        name: 'AMB',
+        dept: 'AMB',
+        type: '안전 안내',
+        menu: 'AMB (구급차)'
+      },
+      { 
+        number: 'M1',
+        name: '의무실',
+        dept: '의무실',
+        type: '의료 지원',
+        menu: '의무실 공간'
+      },
+      { 
+        number: 'F1',
+        name: '학생회비존',
+        dept: '학생회비존',
+        type: '전용 관람 구역',
+        menu: '학생회비를 낸 학생들을 위한 무대를 가까이서 볼 수 있는 공간'
+      },
+      { 
+        number: 'Z1',
+        name: '푸드존',
+        dept: '푸드존',
+        type: '푸드트럭 구역',
+        menu: '타코야끼, 소떡소떡, 소고기불초밥, 크림새우, 칠리새우, 반반콤보, 츄러스, 아이스크림츄러스, 떡볶이, 순대, 튀김, 오뎅'
+      },
+      { 
+        number: 'S1',
+        name: '총학',
+        dept: '총학생회',
+        type: '운영 부스',
+        menu: '타투(헤나), 슬러시'
+      },
+      { 
+        number: 'G1',
+        name: '오락',
+        dept: '오락 부스',
+        type: '체험 부스',
+        menu: '지티 키링 뽑기, 펀치 기계, 축구공 펀치 기계, 두더지 잡기'
+      }
     ];
 
     const boothName = document.getElementById('boothName');
@@ -372,7 +574,23 @@
 
       boothMenu.innerHTML = '';
 
-      if (booth.link) {
+      if (booth.image) {
+        const menuImage = document.createElement('img');
+        menuImage.src = booth.image;
+        menuImage.alt = booth.name + ' 메뉴 이미지';
+        menuImage.className = 'menu-image';
+
+        menuImage.onerror = function() {
+          boothMenu.innerHTML = `
+            <div class="menu-image-error">
+              이미지 파일을 불러오지 못했습니다.<br />
+              파일명 ${booth.image} 를 확인해주세요.
+            </div>
+          `;
+        };
+
+        boothMenu.appendChild(menuImage);
+      } else if (booth.link) {
         const linkButton = document.createElement('a');
         linkButton.href = booth.link;
         linkButton.target = '_blank';
